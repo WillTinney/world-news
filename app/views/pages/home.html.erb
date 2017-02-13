@@ -1,2 +1,29 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+<div id="map" class="center-block" style="width: 960px; height: 720px"></div>
+
+<div class="container">
+
+</div>
+
+
+<%= content_for(:after_js) do %>
+  <script>
+
+  $('#map').vectorMap({map: 'world_mill'});
+
+    // jQuery('#vmap').vectorMap({
+    //     map: 'world_en',
+    //     backgroundColor: null,
+    //     color: '#ffffff',
+    //     hoverOpacity: 0.7,
+    //     selectedColor: '#666666',
+    //     enableZoom: true,
+    //     showTooltip: true,
+    //     values: sample_data,
+    //     scaleColors: ['#C8EEFF', '#006491'],
+    //     normalizeFunction: 'polynomial'
+    // });
+  </script>
+<% end %>
