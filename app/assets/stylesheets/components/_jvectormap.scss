@@ -2,6 +2,10 @@ svg {
     touch-action: none;
 }
 
+.active {
+  fill: blue;
+}
+
 .jvectormap-container {
     width: 100%;
     height: 100%;

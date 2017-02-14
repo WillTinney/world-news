@@ -4,14 +4,9 @@ Country.create!(
   flag: 'australia.svg'
 )
 Country.create!(
-  name: 'Germany',
-  code: 'de',
-  flag: 'germany.jpg'
-)
-Country.create!(
   name: 'Great Britain',
   code: 'gb',
-  flag: 'britain.jpg'
+  flag: 'britain.png'
 )
 Country.create!(
   name: 'India',

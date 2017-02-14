@@ -1,51 +1,40 @@
 class Country < ApplicationRecord
 
-  def get_articles
+  def get_articles(country_code)
     articles = []
-    get_sources(country.code).each do |source|
-      url = "https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey="
-        + ENV['NEWS_API_KEY']
-      uri = URI.parse(url)
 
-      http = Net::HTTP.new(uri.host, uri.port)
-      request = Net::HTTP::Get.new(uri.request_uri)
+    get_sources(country_code).each do |source|
+      url = ("https://newsapi.org/v1/articles?source=" + source + "&apiKey=" + ENV['NEWS_API_KEY'])
+      result = parse_data(url)
 
-      response = http.request(request)
+      result['articles'].each do |article|
+        articles << article
+      end
 
-      # if response.code == "200"
-        result = JSON.parse(response.body)
-
-        result['articles'].each do |article|
-          articles < article
-        end
-
-        return articles
-      # else
-      #   puts "Whoops! API could not be reached."
-      # end
+      return articles
     end
   end
 
   def get_sources(country_code)
     sources = []
-    url = "https://newsapi.org/v1/sources?language=en&country="
-      + country_code
+    url = ("https://newsapi.org/v1/sources?language=en&country=" + country_code)
+    result = parse_data(url)
+
+    result['sources'].each do |source|
+      sources << source['id']
+    end
+
+    return sources
+  end
+
+  def parse_data(url)
     uri = URI.parse(url)
 
     http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
     request = Net::HTTP::Get.new(uri.request_uri)
 
     response = http.request(request)
-    # if response.code == "200"
-      result = JSON.parse(response.body)
-
-      result['sources'].each do |source|
-        sources < source['id']
-      end
-
-      return sources
-    # else
-    #   return "Whoops! API could not be reached."
-    # end
+    return JSON.parse(response.body)
   end
 end

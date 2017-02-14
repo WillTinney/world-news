@@ -1,0 +1,15 @@
+<div class="heading">
+  <%= image_tag(@country.flag, class: "flag") %>
+  <h2><%= @country.name %></h2>
+</div>
+
+<hr>
+
+<% @country.get_articles(@country.code).each do |article| %>
+  <div class="article">
+    <%= link_to article['url'] do %>
+      <h4><%= article['title'] %> (<%= article['publishedAt'][0..9] %>)</h4>
+      <p><%= article['description'] %></p>
+    <% end %>
+  </div>
+<% end %>
