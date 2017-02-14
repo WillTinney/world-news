@@ -4,7 +4,10 @@
 <div id="map" class="center-block" style="width: 960px; height: 720px"></div>
 
 <div class="container">
+  <div class="article-reel" id="australia">
+    <%= Country.where('name = ?', 'Australia').first.get_articles %>
 
+  </div>
 </div>
 
 

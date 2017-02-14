@@ -3,8 +3,9 @@ class Country < ApplicationRecord
   def get_articles
     articles = []
     get_sources(country.code).each do |source|
-      uri = URI.parse("https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey="
-        + ENV['NEWS_API_KEY'])
+      url = "https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey="
+        + ENV['NEWS_API_KEY']
+      uri = URI.parse(url)
 
       http = Net::HTTP.new(uri.host, uri.port)
       request = Net::HTTP::Get.new(uri.request_uri)
@@ -27,8 +28,9 @@ class Country < ApplicationRecord
 
   def get_sources(country_code)
     sources = []
-    uri = URI.parse("https://newsapi.org/v1/sources?language=en&country=us"
-      + country_code)
+    url = "https://newsapi.org/v1/sources?language=en&country="
+      + country_code
+    uri = URI.parse(url)
 
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
