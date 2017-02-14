@@ -6,10 +6,12 @@
 <hr>
 
 <% @country.get_articles(@country.code).each do |article| %>
-  <div class="article">
+<div id="article">
     <%= link_to article['url'], target: "blank" do %>
-      <h4><%= article['title'] %> (<%= article['publishedAt'][0..9] %>)</h4>
-      <p><%= article['description'] %></p>
+      <div class="article">
+        <h4><%= article['title'] %> (<%= article['publishedAt'][0..9] %>)</h4>
+        <p><%= article['description'] %></p>
+      </div>
     <% end %>
   </div>
 <% end %>
