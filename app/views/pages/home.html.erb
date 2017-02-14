@@ -8,10 +8,10 @@
           <h2><strong>Click a country</strong><br>to see the latest news!</h2>
         </div>
 
-
         <hr>
         <div class="text-center">
           <%= image_tag('globe.png', class: 'globe') %>
+          <p>*available countries are highlighted in red</p>
         </div>
       </div>
   </div>
@@ -19,27 +19,8 @@
 
 <%= content_for(:after_js) do %>
   <script>
-
     // JVector Map
     $('#map').vectorMap({map: 'world_mill'});
-
-    // jQuery('#vmap').vectorMap({
-    //     map: 'world_en',
-    //     backgroundColor: null,
-    //     color: '#ffffff',
-    //     hoverOpacity: 0.7,
-    //     selectedColor: '#666666',
-    //     enableZoom: true,
-    //     showTooltip: true,
-    //     values: sample_data,
-    //     scaleColors: ['#C8EEFF', '#006491'],
-    //     normalizeFunction: 'polynomial'
-    // });
-
-    // countries = $('.jvectormap-element')
-    // $.each(countries, function(value) {
-    //   if (value.getAttribute('data-code').toLowerCase() == <%=  %>)
-    // });
 
     // Sets approiate countries to active: In the future I will create a loop that sets each country's id relative to their database id
     $(".jvectormap-element[data-code='AU']").attr("id", "1").addClass("valid");
